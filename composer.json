@@ -1,0 +1,23 @@
+{
+    "name": "mpoiriert/business-rule-engine",
+    "type": "library",
+    "minimum-stability": "dev",
+    "description": "Reusable library",
+    "keywords": ["library","specification","nucleus"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Poirier Theoret",
+            "email": "mpoiriert@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {"Nucleus\\BusinessRuleEngine": "src/"}
+    }
+}
