@@ -17,6 +17,10 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
     },
+    "require": {
+        "mpoiriert/invoker": "*",
+        "symfony/yaml": "*"
+    },
     "autoload": {
         "psr-0": {"Nucleus\\BusinessRuleEngine": "src/"}
     }
