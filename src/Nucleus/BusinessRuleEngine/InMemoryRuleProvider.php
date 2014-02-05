@@ -8,7 +8,7 @@ class InMemoryRuleProvider implements IRuleProvider
     /**
      * @var callable[]
      */
-    protected $rules;
+    protected $rules = array();
 
     /**
      * Return a rule base on it's name

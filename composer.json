@@ -3,7 +3,7 @@
     "type": "library",
     "minimum-stability": "dev",
     "description": "Reusable library",
-    "keywords": ["library","specification","nucleus"],
+    "keywords": ["library","specification","nucleus","business-rule-engine"],
     "license": "MIT",
     "authors": [
         {
