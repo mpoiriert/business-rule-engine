@@ -25,10 +25,9 @@ class BusinessRuleEngine implements IBusinessRuleEngine
     private $invoker;
 
     /**
+     * @param IRuleProvider $ruleProvider
      * @param IInvoker $invoker
      * @param Yaml $yamlParser
-     * 
-     * @\Nucleus\IService\DependencyInjection\Inject
      */
     public function __construct(
         IRuleProvider $ruleProvider = null,
