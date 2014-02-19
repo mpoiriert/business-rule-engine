@@ -11,7 +11,7 @@ namespace Nucleus\BusinessRuleEngine;
  *
  *     "toto{param1:1,param2[1,2]}"
  *
- * You can had a ! before the rule if you want to make it false so you don't have to pass a parameter to the rule to say
+ * You can add a ! before the rule if you want to make it false so you don't have to pass a parameter to the rule to say
  * not match:
  *
  *      "!toto{param1:1,param2[1,2]}"
