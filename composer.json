@@ -19,7 +19,8 @@
     },
     "require": {
         "mpoiriert/invoker": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "psr/log": "*"
     },
     "autoload": {
         "psr-0": {"Nucleus\\BusinessRuleEngine": "src/"}

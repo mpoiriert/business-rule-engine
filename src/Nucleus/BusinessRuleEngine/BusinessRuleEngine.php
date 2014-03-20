@@ -4,10 +4,11 @@ namespace Nucleus\BusinessRuleEngine;
 
 use Nucleus\Invoker\IInvoker;
 use Nucleus\Invoker\Invoker;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Yaml\Yaml;
 
-
-class BusinessRuleEngine implements IBusinessRuleEngine
+class BusinessRuleEngine implements IBusinessRuleEngine, LoggerAwareInterface
 {
     /**
      * @var IRuleProvider
@@ -25,6 +26,11 @@ class BusinessRuleEngine implements IBusinessRuleEngine
     private $invoker;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @param IRuleProvider $ruleProvider
      * @param IInvoker $invoker
      * @param Yaml $yamlParser
@@ -38,6 +44,11 @@ class BusinessRuleEngine implements IBusinessRuleEngine
         $this->invoker = $invoker ? $invoker : new Invoker();
         $this->yamlParser = $yamlParser ? $yamlParser : new Yaml();
         $this->ruleProvider = $ruleProvider ? $ruleProvider : new InMemoryRuleProvider();
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -86,10 +97,22 @@ class BusinessRuleEngine implements IBusinessRuleEngine
         //This is to prevent the enforce method to have all the parameters
         //And also prevent to assign the parameter to the object
         $callback = function($rule) use ($engine, $parameters) {
-            return $engine->verifyRule($rule, $parameters);
+            $result = $engine->verifyRule($rule, $parameters);
+            if($this->logger) {
+                $this->log('Section ' . json_encode($rule) . ' = ' . var_export($result,true));
+            }
+            return $result;
         };
 
-        return $this->enforce($ruleSpecification, $callback);
+        if($this->logger) {
+            $this->log('Rules ' . json_encode($ruleSpecification));
+        }
+        $result = $this->enforce($ruleSpecification, $callback);
+        if($this->logger) {
+            $this->log('Final rules rules ' . json_encode($ruleSpecification) . ' = ' . var_export($result,true));
+        }
+
+        return $result;
     }
 
     /**
@@ -166,5 +189,10 @@ class BusinessRuleEngine implements IBusinessRuleEngine
     public function getRuleProvider()
     {
         return $this->ruleProvider;
+    }
+
+    protected function log($message)
+    {
+        $this->logger && $this->logger->debug('BusinessRuleEngine: ' . $message);
     }
 }

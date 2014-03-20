@@ -24,7 +24,18 @@ class BusinessRuleEngineTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $test = $this;
+        $logger = $this->getMock('Psr\Log\LoggerInterface');
+        $logger->expects($this->any())
+            ->method('debug')
+            ->will(
+                $this->returnCallback(function($message) use ($test) {
+                    //echo $message . "\n";
+                })
+            );
+
         $this->businessRuleEngine = new BusinessRuleEngine();
+        $this->businessRuleEngine->setLogger($logger);
         $this->businessRuleEngine->getRuleProvider()->setRule('default',new TestDefaultTrueRule());
     }
 
