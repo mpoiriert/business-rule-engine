@@ -24,6 +24,5 @@
     },
     "autoload": {
         "psr-4": {"Nucleus\\BusinessRuleEngine\\": "./BusinessRuleEngine"}
-    },
-    "target-dir": "Nucleus/BusinessRuleEngine"
+    }
 }
