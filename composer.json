@@ -23,6 +23,7 @@
         "psr/log": "*"
     },
     "autoload": {
-        "psr-0": {"Nucleus\\BusinessRuleEngine": "src/"}
-    }
+        "psr-4": {"Nucleus\\BusinessRuleEngine\\": "./BusinessRuleEngine"}
+    },
+    "target-dir": "Nucleus/BusinessRuleEngine"
 }

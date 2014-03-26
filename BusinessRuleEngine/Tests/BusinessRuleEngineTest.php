@@ -1,19 +1,12 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Nucleus\BusinessRuleEngineEngine\Tests;
 
 use Nucleus\BusinessRuleEngine\BusinessRuleEngine;
 use Nucleus\BusinessRuleEngine\RuleNotFoundException;
 
 /**
- * Description of FileSystemLoader
- *
- * @author Martin
+ * @author Martin Poirier Theoret <mpoiriert@gmail.com>
  */
 class BusinessRuleEngineTest extends \PHPUnit_Framework_TestCase
 {
