@@ -94,22 +94,23 @@ class BusinessRuleEngine implements IBusinessRuleEngine, LoggerAwareInterface
     public function check($ruleSpecification, array $parameters = array())
     {
         $engine = $this;
+        $logger = $this->logger;
         //This is to prevent the enforce method to have all the parameters
         //And also prevent to assign the parameter to the object
-        $callback = function($rule) use ($engine, $parameters) {
+        $callback = function($rule) use ($engine, $logger, $parameters) {
             $result = $engine->verifyRule($rule, $parameters);
-            if($this->logger) {
-                $this->log('Section ' . json_encode($rule) . ' = ' . var_export($result,true));
+            if($logger) {
+                $engine->log('Section ' . json_encode($rule) . ' = ' . var_export($result,true));
             }
             return $result;
         };
 
-        if($this->logger) {
-            $this->log('Rules ' . json_encode($ruleSpecification));
+        if($engine->logger) {
+            $engine->log('Rules ' . json_encode($ruleSpecification));
         }
         $result = $this->enforce($ruleSpecification, $callback);
-        if($this->logger) {
-            $this->log('Final rules rules ' . json_encode($ruleSpecification) . ' = ' . var_export($result,true));
+        if($engine->logger) {
+            $engine->log('Final rules rules ' . json_encode($ruleSpecification) . ' = ' . var_export($result,true));
         }
 
         return $result;
@@ -191,7 +192,7 @@ class BusinessRuleEngine implements IBusinessRuleEngine, LoggerAwareInterface
         return $this->ruleProvider;
     }
 
-    protected function log($message)
+    public function log($message)
     {
         $this->logger && $this->logger->debug('BusinessRuleEngine: ' . $message);
     }
