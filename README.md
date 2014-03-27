@@ -21,7 +21,7 @@ $ruleProvider->setRule('ruleFalse',function(){ return false; });
 
 ```
 
-*A easy way to make a rule being a class that have this as it's only concert it to use the __invoke magic method.*
+*A easy way to make a rule implement in a class that have this as it's only concern is to use the __invoke magic method.*
 
 From there you can call the business rule engine methods with a rule specification
 
@@ -87,10 +87,10 @@ This will result in ($rule1Result && ($rule2Result || $rule3Result))
 This system is inspire from Symfony 1 credentials checks http://symfony.com/legacy/doc/reference/1_4/en/08-Security
 and the specification pattern http://en.wikipedia.org/wiki/Specification_pattern
 
-Check the unit test for more example of usage
+Check the unit test for more example of how to use it.
 
 
-### Example of usage ###
+### 'Real' life usage ###
 
 Here is some example of usage that could occur in real live. The implementation of class a rule are not available
 within this library, this library is just the engine itself.
@@ -110,7 +110,7 @@ $businessRuleEngine->check(array(array("permission{name:admin}","permission{name
 
 #### Payment Method ####
 
-Check witch payment to offer base on some order attribute
+Check witch payment method to offer base on some order attribute
 
 ```PHP
 
